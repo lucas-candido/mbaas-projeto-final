@@ -1,0 +1,1961 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "PUCPR Projeto Final - Webservices e MBaaS ",
+        "description": "API criada como projeto final da matéria de Webservices e MBaaS - por Lucas Cândido dos Santos",
+        "contact": {
+            "name": "Lucas Cândido dos Santos"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "API server"
+        }
+    ],
+    "paths": {
+        "/admins": {
+            "get": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Retorna uma lista de administradores",
+                "description": "Retorna uma lista de administradores",
+                "operationId": "e6eb1c1ea5620304b109d942e974adb2",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Cadastra um novo administrador",
+                "description": "Cadastra um novo administrador",
+                "operationId": "d6bcdbb26984b97754db59e24ecbe321",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do administrador",
+                        "required": true
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do administrador",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do administrador",
+                        "required": true
+                    },
+                    {
+                        "name": "inativo",
+                        "in": "query",
+                        "description": "Define se um administrador está ativo ou não",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/admins/{id}": {
+            "get": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Retorna um administrador via ID",
+                "description": "Retorna um administrador via ID",
+                "operationId": "4283cfc97fbc231a1dd949114540d43f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do administradores desejado",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Atualiza um administrador",
+                "description": "Atualiza um administrador",
+                "operationId": "4b0624a7b10b7a0718465e9e3ec0609c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do administradores desejado",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do administrador",
+                        "required": false
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do administrador",
+                        "required": false
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do administrador",
+                        "required": false
+                    },
+                    {
+                        "name": "inativo",
+                        "in": "query",
+                        "description": "Define se um administrador está ativo ou não",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/login-usuario": {
+            "post": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Efetua o login do usuário",
+                "description": "Efetua o login do usuário",
+                "operationId": "dc2899b8d128b5deaa49caec0f009e53",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do usuário",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/logout-usuario": {
+            "post": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Efetua o logout do usuário",
+                "description": "Efetua o logout do usuário",
+                "operationId": "e8ba574075c85b58bd9d9b59bafdaec7",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/logout-admin": {
+            "post": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Efetua o logout do administrador",
+                "description": "Efetua o logout do administrador",
+                "operationId": "8a91e6f4343ad033c085c7850ea38444",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/login-admin": {
+            "post": {
+                "tags": [
+                    "administradores"
+                ],
+                "summary": "Efetua o login do administrador",
+                "description": "Efetua o login do administrador",
+                "operationId": "3c7148944b670267e1600a31b2ea708d",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do administrador",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do administrador",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/destaques": {
+            "get": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Retorna uma lista de produtos em destaque",
+                "description": "Retorna uma lista de produtos em destaque",
+                "operationId": "286debe8b038e5b45d8fb173f67249eb",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/pesquisa/{where}": {
+            "get": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Retorna uma lista de produtos baseados no termo pesquisado",
+                "description": "Retorna uma lista de produtos baseados no termo pesquisado",
+                "operationId": "3cf8252be6c9e66e6831d2782ae7bf73",
+                "parameters": [
+                    {
+                        "name": "where",
+                        "in": "path",
+                        "description": "Opções de busca -> busca=shampoo; busca=todos; marca=123; categoria=456",
+                        "required": true,
+                        "example": "busca=todos"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/produtos/{id}": {
+            "get": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Retorna um produto baseado no ID informado",
+                "description": "Retorna um produto baseado no ID informado",
+                "operationId": "04ff89b620ba602adef63569d15d944d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Atualiza um produto",
+                "description": "Atualiza um produto",
+                "operationId": "c45ef52a7b159513ec0c8878561a6c38",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "produto",
+                        "in": "query",
+                        "description": "Código de referencia do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "quantidade",
+                        "in": "query",
+                        "description": "Quantidade em estoque do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "preco",
+                        "in": "query",
+                        "description": "Preço de venda do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "tamanho",
+                        "in": "query",
+                        "description": "Tamanho do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "cor",
+                        "in": "query",
+                        "description": "Cor do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "inativo",
+                        "in": "query",
+                        "description": "Flag que define se o produto está ativo ou não",
+                        "required": false
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "destaque",
+                        "in": "query",
+                        "description": "Flag que define se um produto é destaque ou não",
+                        "required": false
+                    },
+                    {
+                        "name": "preco_promocional",
+                        "in": "query",
+                        "description": "Preço promocional do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "descricao",
+                        "in": "query",
+                        "description": "Descrição do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "marca_id",
+                        "in": "query",
+                        "description": "ID da marca",
+                        "required": false
+                    },
+                    {
+                        "name": "categoria_id",
+                        "in": "query",
+                        "description": "ID da categoria",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/categorias": {
+            "get": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Retorna uma lista com todas as categorias",
+                "description": "Retorna uma lista com todas as categorias",
+                "operationId": "9bd4c5d463ba7b15843eebef947ed231",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Cadastra uma nova categoria",
+                "description": "Cadastra uma nova categoria",
+                "operationId": "33561abcf774ce0a7d668f231512afd9",
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome da categoria",
+                        "required": true
+                    },
+                    {
+                        "name": "pai",
+                        "in": "query",
+                        "description": "ID da categoria, em caso de ser uma subcategoria",
+                        "required": false
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem",
+                        "required": false
+                    },
+                    {
+                        "name": "principal",
+                        "in": "query",
+                        "description": "Define se uma categoria é principal ou não",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/principais": {
+            "get": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Retorna uma lista com as principais categorias",
+                "description": "Retorna uma lista com as principais categorias",
+                "operationId": "2c5ecdc4872349a8eb0cbecb8eda6af9",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/categorias/{id}": {
+            "get": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Retorna uma categoria via ID",
+                "description": "Retorna uma categoria via ID",
+                "operationId": "0ddbcef186a80938088c691755aee7fe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da categoria desejada",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Atualiza uma categoria",
+                "description": "Atualiza uma categoria",
+                "operationId": "3cb64fbc825d55fb192dc610c8ce7a48",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da categoria desejada",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome da categoria",
+                        "required": false
+                    },
+                    {
+                        "name": "pai",
+                        "in": "query",
+                        "description": "ID da categoria, em caso de ser uma subcategoria",
+                        "required": false
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem",
+                        "required": false
+                    },
+                    {
+                        "name": "principal",
+                        "in": "query",
+                        "description": "Define se uma categoria é principal ou não",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/categorias-marca/{id}": {
+            "get": {
+                "tags": [
+                    "categorias"
+                ],
+                "summary": "Retorna uma lista de categorias pertencentes a marca informada como parâmetro",
+                "description": "Retorna uma lista de categorias pertencentes a marca informada como parâmetro",
+                "operationId": "b8c8076a82cab64a7717f16fe102cf27",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da marca desejada",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/favoritos": {
+            "post": {
+                "tags": [
+                    "favoritos"
+                ],
+                "summary": "Adiciona um favorito",
+                "description": "Adiciona um favorito",
+                "operationId": "02c1f4866b98c03e9eb0e7ea0b82ae3c",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "ID do usuário a quem o favorito pertence",
+                        "required": true
+                    },
+                    {
+                        "name": "produto_id",
+                        "in": "query",
+                        "description": "ID do produto",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/favoritos/{produto_id}": {
+            "delete": {
+                "tags": [
+                    "favoritos"
+                ],
+                "summary": "Remove um favorito",
+                "description": "Remove um favorito",
+                "operationId": "a0776540f48235d4438f7c16c7724198",
+                "parameters": [
+                    {
+                        "name": "produto_id",
+                        "in": "path",
+                        "description": "Informe o ID do produto desejado",
+                        "required": true,
+                        "example": "456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/favoritos-usuario": {
+            "get": {
+                "tags": [
+                    "favoritos"
+                ],
+                "summary": "Retorna a lista de favoritos do usuário",
+                "description": "Retorna a lista de favoritos do usuário",
+                "operationId": "b8628be244012bf68fc631bba563987d",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/item-pedidos": {
+            "put": {
+                "tags": [
+                    "itens"
+                ],
+                "summary": "Edita um item de um pedido existente",
+                "description": "Edita um item de um pedido existente",
+                "operationId": "6001a4350fcd97e09ed71992589982fc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do item desejado",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "produto_id",
+                        "in": "query",
+                        "description": "ID do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "quantidade",
+                        "in": "query",
+                        "description": "Quantiade comprada do item",
+                        "required": false
+                    },
+                    {
+                        "name": "unitario",
+                        "in": "query",
+                        "description": "Valor unitário do item",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "itens"
+                ],
+                "summary": "Adiciona um item a um pedido existente",
+                "description": "Adiciona um item a um pedido existente",
+                "operationId": "acd77c2f7774d381b0bd0ae37cc6964a",
+                "parameters": [
+                    {
+                        "name": "pedido_id",
+                        "in": "query",
+                        "description": "ID do pedido a que o item pertence",
+                        "required": true
+                    },
+                    {
+                        "name": "produto_id",
+                        "in": "query",
+                        "description": "ID do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "quantidade",
+                        "in": "query",
+                        "description": "Quantiade comprada do item",
+                        "required": true
+                    },
+                    {
+                        "name": "unitario",
+                        "in": "query",
+                        "description": "Valor unitário do item",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/item-pedidos/{id}": {
+            "get": {
+                "tags": [
+                    "itens"
+                ],
+                "summary": "Retorna um produto do pedido pelo ID",
+                "description": "Retorna um produto do pedido pelo ID",
+                "operationId": "e3c9d276ae5041d11fcca46ee4678906",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do item desejado",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "itens"
+                ],
+                "summary": "Remove um produto do pedido pelo ID",
+                "description": "Remove um produto do pedido pelo ID",
+                "operationId": "e7044bd56104f6a50515ab3d51acc2c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do item desejado",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/principais-marcas": {
+            "get": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Retorna uma lista com as principais marcas",
+                "description": "Retorna uma lista com as principais marcas",
+                "operationId": "618c28c96b3ad55ec387fa6cbc57d00e",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/marcas": {
+            "get": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Retorna uma lista com todas as marcas",
+                "description": "Retorna uma lista com todas as marcas",
+                "operationId": "ae1229fe3ceeb69c84d84348e9a42ed8",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Cadastra uma nova marca",
+                "description": "Cadastra uma nova marca",
+                "operationId": "5bd8e50c970263852b63ef439eabcede",
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome da marca",
+                        "required": true
+                    },
+                    {
+                        "name": "pai",
+                        "in": "query",
+                        "description": "ID da marca, em caso de ser uma submarca",
+                        "required": false
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem",
+                        "required": false
+                    },
+                    {
+                        "name": "principal",
+                        "in": "query",
+                        "description": "Define se uma marca é principal ou não",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/marcas/{id}": {
+            "get": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Retorna uma marca via ID",
+                "description": "Retorna uma marca via ID",
+                "operationId": "41e4c5bd578c622566574c8a7e6f76ef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da marca desejada",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Atualiza uma marca",
+                "description": "Atualiza uma marca",
+                "operationId": "1be54f200e94eb246450fed82c091d5b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da marca desejada",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome da marca",
+                        "required": false
+                    },
+                    {
+                        "name": "pai",
+                        "in": "query",
+                        "description": "ID da marca, em caso de ser uma submarca",
+                        "required": false
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem",
+                        "required": false
+                    },
+                    {
+                        "name": "principal",
+                        "in": "query",
+                        "description": "Define se uma marca é principal ou não",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/marcas-categoria/{id}": {
+            "get": {
+                "tags": [
+                    "marcas"
+                ],
+                "summary": "Retorna uma lista de marcas pertencentes na categoria informada como parâmetro",
+                "description": "Retorna uma lista de marcas pertencentes na categoria informada como parâmetro",
+                "operationId": "5ab7b7c6f1fc5aeeff64b733f080cb91",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID da categoria desejada",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/pedidos": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna todos os pedidos do usuário",
+                "description": "Retorna todos os pedidos do usuário",
+                "operationId": "0c57ec30af088b5f9ea2890b327e9951",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Cria um novo pedido",
+                "description": "Cria um novo pedido",
+                "operationId": "6f3b62bb917b958690761c0641afb8b8",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "ID do usuário a que o pedido pertence",
+                        "required": true
+                    },
+                    {
+                        "name": "pagamento",
+                        "in": "query",
+                        "description": "ID do tipo de pagamento",
+                        "required": true
+                    },
+                    {
+                        "name": "obs",
+                        "in": "query",
+                        "description": "Observaçoes do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "parcelas",
+                        "in": "query",
+                        "description": "Número de parcelas",
+                        "required": true
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status do pedido",
+                        "required": true
+                    },
+                    {
+                        "name": "motivocancel",
+                        "in": "query",
+                        "description": "Mensagem de motivo do cancelamento do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelusu",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pelo usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelempresa",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pela empresa",
+                        "required": false
+                    },
+                    {
+                        "name": "vrfrete",
+                        "in": "query",
+                        "description": "Valor do frete do pedido",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/carrinho": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna o carrinho de compras do usuário",
+                "description": "Retorna o carrinho de compras do usuário",
+                "operationId": "14d3069cd767f6d7b0907f8f143dcb42",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/pedidos/{id}": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna um pedido pelo seu ID",
+                "description": "Retorna um pedido pelo seu ID",
+                "operationId": "72d0da3cc0beededaa476a87a9ff21e6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do pedido desejado",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Atualiza um pedido do usuário",
+                "description": "Atualiza um pedido do usuário",
+                "operationId": "3be955f973b612c79ec83fbf21836517",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do pedido desejado",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "pagamento",
+                        "in": "query",
+                        "description": "ID do tipo de pagamento",
+                        "required": false
+                    },
+                    {
+                        "name": "obs",
+                        "in": "query",
+                        "description": "Observaçoes do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "parcelas",
+                        "in": "query",
+                        "description": "Número de parcelas",
+                        "required": false
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "motivocancel",
+                        "in": "query",
+                        "description": "Mensagem de motivo do cancelamento do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelusu",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pelo usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelempresa",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pela empresa",
+                        "required": false
+                    },
+                    {
+                        "name": "vrfrete",
+                        "in": "query",
+                        "description": "Valor do frete do pedido",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/pedidos-completo": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna todos os pedidos, independente do usuário",
+                "description": "Retorna todos os pedidos, independente do usuário",
+                "operationId": "e279a48f972ad3e6145e0078272a3748",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/concluidos": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna uma lista de pedidos concluídos",
+                "description": "Retorna uma lista de pedidos concluídos",
+                "operationId": "d18ad26c03af7db616e1e595e0e7e838",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/cancelados": {
+            "get": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Retorna uma lista de pedidos cancelados",
+                "description": "Retorna uma lista de pedidos cancelados",
+                "operationId": "93b65269c5386c91829826c54b9a2bc1",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/pedido-update/{id}": {
+            "put": {
+                "tags": [
+                    "pedidos"
+                ],
+                "summary": "Atualiza um pedido (apenas para admins)",
+                "description": "Atualiza um pedido (apenas para admins)",
+                "operationId": "1aee15c636dc860152e2c2d2797163f5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do pedido desejado",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "ID do usuário a que o pedido pertence",
+                        "required": false
+                    },
+                    {
+                        "name": "pagamento",
+                        "in": "query",
+                        "description": "ID do tipo de pagamento",
+                        "required": false
+                    },
+                    {
+                        "name": "obs",
+                        "in": "query",
+                        "description": "Observaçoes do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "parcelas",
+                        "in": "query",
+                        "description": "Número de parcelas",
+                        "required": false
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "motivocancel",
+                        "in": "query",
+                        "description": "Mensagem de motivo do cancelamento do pedido",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelusu",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pelo usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cancelempresa",
+                        "in": "query",
+                        "description": "Indica se o pedido foi cancelado pela empresa",
+                        "required": false
+                    },
+                    {
+                        "name": "vrfrete",
+                        "in": "query",
+                        "description": "Valor do frete do pedido",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/produtos": {
+            "post": {
+                "tags": [
+                    "produtos"
+                ],
+                "summary": "Cadastra um novo produto",
+                "description": "Cadastra um novo produto",
+                "operationId": "9c3a31cb5c64ba3c23f9ce329cea097c",
+                "parameters": [
+                    {
+                        "name": "produto",
+                        "in": "query",
+                        "description": "Código de referencia do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "quantidade",
+                        "in": "query",
+                        "description": "Quantidade em estoque do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "preco",
+                        "in": "query",
+                        "description": "Preço de venda do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "tamanho",
+                        "in": "query",
+                        "description": "Tamanho do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "cor",
+                        "in": "query",
+                        "description": "Cor do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "inativo",
+                        "in": "query",
+                        "description": "Flag que define se o produto está ativo ou não",
+                        "required": true
+                    },
+                    {
+                        "name": "imagem",
+                        "in": "query",
+                        "description": "URL da imagem do produto",
+                        "required": false
+                    },
+                    {
+                        "name": "destaque",
+                        "in": "query",
+                        "description": "Flag que define se um produto é destaque ou não",
+                        "required": true
+                    },
+                    {
+                        "name": "preco_promocional",
+                        "in": "query",
+                        "description": "Preço promocional do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "descricao",
+                        "in": "query",
+                        "description": "Descrição do produto",
+                        "required": true
+                    },
+                    {
+                        "name": "marca_id",
+                        "in": "query",
+                        "description": "ID da marca",
+                        "required": true
+                    },
+                    {
+                        "name": "categoria_id",
+                        "in": "query",
+                        "description": "ID da categoria",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Não autorizado. Apenas administradores podem cadastrar produtos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Retorna uma lista de usuários",
+                "description": "Retorna uma lista de usuários",
+                "operationId": "7208c29037df2b8bb02499ba39ed8a78",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/cadastro": {
+            "post": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Cadastra um novo usuário",
+                "description": "Cadastra um novo usuário",
+                "operationId": "bb227775c554155a76a8ca0a1db65516",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "cpfcnpj",
+                        "in": "query",
+                        "description": "CPF ou CNPJ do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "endereco",
+                        "in": "query",
+                        "description": "Endereço do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "numeroendereco",
+                        "in": "query",
+                        "description": "Número do endereço do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "bairro",
+                        "in": "query",
+                        "description": "Bairro do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "cidade",
+                        "in": "query",
+                        "description": "Cidade do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "estado",
+                        "in": "query",
+                        "description": "Estado do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "cep",
+                        "in": "query",
+                        "description": "CEP do usuário",
+                        "required": true
+                    },
+                    {
+                        "name": "telefone",
+                        "in": "query",
+                        "description": "Telefone do usuário",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Retorna um usuário via ID",
+                "description": "Retorna um usuário via ID",
+                "operationId": "6946bbab7898f59a09e3c8e529a38907",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do usuário desejado",
+                        "required": true,
+                        "example": "123"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Atualiza um usuário",
+                "description": "Atualiza um usuário",
+                "operationId": "05028d02ea3e9a99abd6260cfe05b179",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Informe o ID do usuário desejado",
+                        "required": true,
+                        "example": "123"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cpfcnpj",
+                        "in": "query",
+                        "description": "CPF ou CNPJ do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "endereco",
+                        "in": "query",
+                        "description": "Endereço do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "numeroendereco",
+                        "in": "query",
+                        "description": "Número do endereço do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "bairro",
+                        "in": "query",
+                        "description": "Bairro do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cidade",
+                        "in": "query",
+                        "description": "Cidade do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "estado",
+                        "in": "query",
+                        "description": "Estado do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cep",
+                        "in": "query",
+                        "description": "CEP do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "telefone",
+                        "in": "query",
+                        "description": "Telefone do usuário",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/perfil": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Retorna o perfil do usuario",
+                "description": "Retorna o perfil do usuário",
+                "operationId": "c112628500e83ea73841986ac0b33d14",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/edita-perfil": {
+            "put": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Atualiza o perfil do usuário",
+                "description": "Atualiza o perfil do usuário",
+                "operationId": "0506418446b7e69b8d020447f1ccecf7",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cpfcnpj",
+                        "in": "query",
+                        "description": "CPF ou CNPJ do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "endereco",
+                        "in": "query",
+                        "description": "Endereço do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "numeroendereco",
+                        "in": "query",
+                        "description": "Número do endereço do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "bairro",
+                        "in": "query",
+                        "description": "Bairro do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cidade",
+                        "in": "query",
+                        "description": "Cidade do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "estado",
+                        "in": "query",
+                        "description": "Estado do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "cep",
+                        "in": "query",
+                        "description": "CEP do usuário",
+                        "required": false
+                    },
+                    {
+                        "name": "telefone",
+                        "in": "query",
+                        "description": "Telefone do usuário",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
